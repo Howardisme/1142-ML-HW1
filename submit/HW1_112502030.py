@@ -30,7 +30,7 @@ def feature_engineering(df):
 
 
     # TODO 2.3: 新增是否及格欄位（平均 >= 60 為及格）
-    df['是否及格'] = df['平均'].apply(lambda x: '及格' if x >= 60 else '不及格')
+    df['是否及格'] = df['平均'] >= 60
 
     return df  # ← 請勿修改 return
 
@@ -71,7 +71,7 @@ def group_statistics(df):
     # TODO 4.2: 計算各性別的及格率
     # Hint: 是否及格欄位為 True/False，mean() 可直接計算比例
     gender_pass_rate = df.assign(
-        is_pass_val = df['是否及格'] == '及格'
+        is_pass_val = df['是否及格'] == True
     ).groupby('性別')['is_pass_val'].mean()
 
     return {  # ← 請勿修改 return 結構（key 名稱不可變動）
